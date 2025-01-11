@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Dynamic Quiz</h1>
+    </header>
+
+    <!-- En iyi skor göstergesi -->
+    <div class="best-score">
+        <strong>Best Score:</strong> {{ best_score }}%
+    </div>
+
+    <div class="container">
+        <form method="POST" action="/submit">
+            {% for question in questions %}
+                <div class="question">
+                    <h2>Question {{ loop.index }}: {{ question.text }}</h2>
+                    {% for option in question.options %}
+                        <label>
+                            <input type="radio" name="question{{ question.id }}" value="{{ option }}">
+                            {{ option }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Submit Answers</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>Created by <a href="https://www.dogancanyildiz.com">Doğan Can YILDIZ</a></p>
+    </footer>
+</body>
+</html>
